@@ -126,3 +126,24 @@ where exists
 		and rental.outdate >= 20141002 /*The first day of the 2 weeks*/
 	group by Customer.cid
 	having count(distinct Movie.mid) >= 5)
+
+
+
+update Rental
+set returndate = 20141016, cost
+where
+
+
+
+
+
+
+
+
+
+create view analyst as 
+select title, bname
+from Movie, Branch, Rental, Copy
+where Movie.mid = Copy.mid
+	and Copy.copyid = Rental.copyid
+	and Copy.bid = Branch.bid
