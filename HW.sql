@@ -110,3 +110,16 @@ having
         		then 1 
         		else 0 
         	end)
+
+
+
+
+
+select Customer.cid
+from Customer, Movie, Copy, Rental
+where Customer.cid = Rental.cid
+	and Rental.copyid = Copy.copyid
+	and Copy.mid = Movie.mid
+	and rental.outdate >20141000
+group by Customer.cid
+having count(distinct Movie.mid) >=5
