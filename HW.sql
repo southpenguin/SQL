@@ -115,7 +115,7 @@ having
 
 
 
-update customer, rental, copy, movie
+update Customer
 set balance = balance + 5
 where exists 
 	(select Customer.cid
