@@ -1,21 +1,21 @@
 select cname
 from Customer
 where 
-    Customer.cid in
+	Customer.cid in
 		(select Rental.cid 
 		from Rental, Copy, Movie
 		where Rental.copyid = Copy.copyid 
 		and Copy.mid = Movie.mid 	
 		and Movie.title = 'Terminator1')
-    and 
-    Customer.cid in
+	and 
+	Customer.cid in
 		(select Rental.cid 
 		from Rental, Copy, Movie
 		where Rental.copyid = Copy.copyid 
 		and Copy.mid = Movie.mid 
 		and Movie.title = 'Terminator2')
 	and
-    Customer.cid not in
+	Customer.cid not in
 		(select Rental.cid 
 		from Rental, Copy, Movie
 		where Rental.copyid = Copy.copyid 
