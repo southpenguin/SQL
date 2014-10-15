@@ -147,3 +147,32 @@ from Movie, Branch, Rental, Copy
 where Movie.mid = Copy.mid
 	and Copy.copyid = Rental.copyid
 	and Copy.bid = Branch.bid
+
+
+
+
+create view Customers as
+select cid, cname, caddress
+from Customer
+
+
+select caddress
+from Customers
+where cname = 'John Smith'
+
+/*Cannot output second*/
+
+
+insert into Customers(cid, cname, caddress)
+value (18123, 'Bob Jones', '23 Court Street, Brooklyn')
+
+
+
+
+Stations(sid, name)
+Stop(sid, lid)
+Lin(lid, direction, number)
+Trains(tid, lid, stime
+Card(cid, balance, ins, outs, int, outt)
+Schedule(lid, sid, in, out)
+Price(cost, froms, tos)
