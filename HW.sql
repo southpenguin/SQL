@@ -123,6 +123,6 @@ where exists
 	where Customer.cid = Rental.cid
 		and Rental.copyid = Copy.copyid
 		and Copy.mid = Movie.mid
-		and rental.outdate >20141000
+		and rental.outdate >= 20141002 /*The first day of the 2 weeks*/
 	group by Customer.cid
 	having count(distinct Movie.mid) >= 5)
