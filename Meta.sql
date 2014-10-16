@@ -32,7 +32,7 @@ create table Card (
    outsid int(4),
    intime int(4),
    outtime int(4),
-   primary key (cid),
+   primary key (cid)
 );
 
 create table Schedule (
@@ -48,7 +48,7 @@ create table Schedule (
 );
 
 create table Price (
-   cost numeric(1,2),
+   cost numeric(4,2),
    fromstat varchar(20),
    tostat varchar(20),
    primary key (cost, fromstat, tostat)
