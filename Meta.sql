@@ -40,11 +40,9 @@ create table Schedule (
    sid int(4),
    intime int(4),
    outtime int(4),
-   direction varchar(8),
-   primary key (lid, sid, intime, direction),
+   primary key (lid, sid, intime),
    foreign key (lid) references Line(lid),
-   foreign key (sid) references Station(sid),
-   foreign key (direction) references Line(direction)
+   foreign key (sid) references Station(sid)
 );
 
 create table Price (
@@ -55,58 +53,55 @@ create table Price (
 );
 
 
+insert into Station values (1001, 'Jay St');
+insert into Station values (1002, 'Times Sq');
+insert into Station values (1003, 'Penn Station');
+insert into Station values (1004, 'Wall St');
+insert into Station values (1101, 'Kings Highway');
+insert into Station values (1011, 'York St');
+insert into Station values (1201, '7th Ave');
+insert into Station values (1021, 'Park Ave');
+insert into Station values (1301, 'Columbus Circle');
+insert into Station values (1031, 'Coney Island');
 
 
-INSERT INTO customer VALUES (15674, 'John Smith', '67 Jay Street',7183457689,10);
-INSERT INTO customer VALUES (45624, 'Bob Jones', '7 Park Place',7188764444,20);
-INSERT INTO customer VALUES (87654, 'Karen Lam', '123 Jay Street',3475554846,5);
-INSERT INTO customer VALUES (66666, 'Jake Weber', '235 4th Ave',7189876543,14);
-INSERT INTO customer VALUES (12345, 'Mary Lopez', '235 Fulton Ave',7189876543,4);
+insert into Line values (1, 'uptown');
+insert into Line values (1, 'downtown');
+insert into Line values (2, 'uptown');
+insert into Line values (2, 'downtown');
+insert into Line values (3, 'uptown');
+insert into Line values (3, 'downtown');
 
-INSERT INTO movie VALUES (64, 'Terminator1', 'Action', 1984);
-INSERT INTO movie VALUES (53, 'Terminator2', 'Action', 1991);
-INSERT INTO movie VALUES (95, 'Waterworld', 'Bad Movie', 1995);
-INSERT INTO movie VALUES (96, 'Scary Movie', 'Comedy', 2000);
-INSERT INTO movie VALUES (19, 'Infernal Affairs', 'Foreign', 2002);
-INSERT INTO movie VALUES (72, 'Terminator3', 'Action', 1998);
+insert into Stop values (1001, 1);
+insert into Stop values (1002, 1);
+insert into Stop values (1003, 1);
+insert into Stop values (1004, 2);
+insert into Stop values (1101, 2);
+insert into Stop values (1101, 3);
+insert into Stop values (1001, 2);
+insert into Stop values (1031, 3);
+insert into Stop values (1011, 1);
+insert into Stop values (1011, 2);
+insert into Stop values (1301, 2);
+insert into Stop values (1301, 1);
+insert into Stop values (1301, 3);
+insert into Stop values (1031, 2);
+insert into Stop values (1031, 1);
 
-INSERT INTO branch VALUES (674, 'Downtown', '67 Montague Street');
-INSERT INTO branch VALUES (451, 'Park Slope', '141 5th Avenue');
-INSERT INTO branch VALUES (349, 'Bay Ridge', '1 Carlitos Way');
-INSERT INTO branch VALUES (127, 'Sunset Park', '23 Main Street');
-INSERT INTO branch VALUES (159, 'Brooklyn Heights', '10 metrotech Jay Street');
+insert into Train values (1, 0620);
+insert into Train values (1, 0820);
+insert into Train values (1, 1020);
+insert into Train values (2, 0330);
+insert into Train values (2, 0630);
+insert into Train values (2, 1330);
+insert into Train values (3, 0900);
+insert into Train values (3, 1400);
+insert into Train values (3, 2000);
 
+insert into Card values (10345, 10.50, 1001, 1201, 0830, 1330);
+insert into Card values (20341, 2210.75, 1031, 1201, 0927, 0330);
+insert into Card values (38741, 813.20, 1001, 1021, 1357, 0959);
+insert into Card values (29414, 84.19, 1301, 1001, 1638, 2147);
+insert into Card values (92345, 9.00, 1021, 1011, 0530, 1549);
 
-INSERT INTO copy VALUES (76543, 64, 674);
-INSERT INTO copy VALUES (54589, 64, 674);
-INSERT INTO copy VALUES (16537, 53, 159);
-INSERT INTO copy VALUES (76235, 96, 674);
-INSERT INTO copy VALUES (87125, 95, 451);
-INSERT INTO copy VALUES (17965, 19, 451);
-INSERT INTO copy VALUES (18745, 19, 451);
-INSERT INTO copy VALUES (87135, 64, 451);
-INSERT INTO copy VALUES (76211, 64, 451);
-INSERT INTO copy VALUES (94712, 95, 349);
-INSERT INTO copy VALUES (74583, 53, 349);
-INSERT INTO copy VALUES (81723, 64, 127);
-INSERT INTO copy VALUES (84923, 64, 127);
-INSERT INTO copy VALUES (90321, 72, 127);
-INSERT INTO copy VALUES (90324, 72, 451);
-
-INSERT INTO rented VALUES (15674, 76543, 20141006, NULL,3);
-INSERT INTO rented VALUES (45624, 54589, 20091010, 20091011,6);
-INSERT INTO rented VALUES (45624, 16537, 20091014, 20091017,3);
-INSERT INTO rented VALUES (45624, 81723, 20061009, 20061010,8);
-INSERT INTO rented VALUES (15674, 76235, 20141003, NULL,3);
-INSERT INTO rented VALUES (87654, 81723, 20141004, NULL,4);
-INSERT INTO rented VALUES (87654, 94712, 20060812, 20060823,6);
-INSERT INTO rented VALUES (87654, 87135, 20060830, 20060903,3);
-INSERT INTO rented VALUES (66666, 76211, 20141007, NULL,9);
-INSERT INTO rented VALUES (66666, 94712, 20061012, 20061016,12);
-INSERT INTO rented VALUES (12345, 76543, 20090812, 20090815,15);
-INSERT INTO rented VALUES (87654, 76211, 20090517, 20090524,6);
-INSERT INTO rented VALUES (45624, 16537, 20091009, 20091011,4);
-INSERT INTO rented VALUES (66666, 81723, 20100107, 20100111,6);
-INSERT INTO rented VALUES (15674, 90321, 20101009, 20101015,10);
-INSERT INTO rented VALUES (15674, 84923, 20091009, 20091015,10);
-INSERT INTO rented VALUES (66666, 16537, 20101009, 20101017,14);
+insert into Schedule values()
