@@ -38,11 +38,13 @@ create table Card (
 create table Schedule (
    lid int(2),
    sid int(4),
+   stime int(4),
    intime int(4),
    outtime int(4),
-   primary key (lid, sid, intime),
+   primary key (lid, sid, stime, intime),
    foreign key (lid) references Line(lid),
-   foreign key (sid) references Station(sid)
+   foreign key (sid) references Station(sid),
+   foreign key (stime) references Train(stime)
 );
 
 create table Price (
@@ -104,13 +106,13 @@ insert into Card values (38741, 813.20, 1001, 1021, 1357, 0959);
 insert into Card values (29414, 84.19, 1301, 1001, 1638, 2147);
 insert into Card values (92345, 9.00, 1021, 1011, 0530, 1549);
 
-insert into Schedule values(1, 1001, 0857, 0859);
-insert into Schedule values(1, 1003, 0837, 0840);
-insert into Schedule values(2, 1101, 1321, 1322);
-insert into Schedule values(2, 1001, 1141, 1145);
-insert into Schedule values(3, 1031, 0931, 0933);
-insert into Schedule values(3, 1101, 1045, 1047);
-insert into Schedule values(3, 1031, 1040, 1042);
+insert into Schedule values(1, 1001, 0820, 0857, 0859);
+insert into Schedule values(1, 1003, 0820, 0837, 0840);
+insert into Schedule values(2, 1101, 0630, 1321, 1322);
+insert into Schedule values(2, 1001, 0630, 1141, 1145);
+insert into Schedule values(3, 1031, 0900, 0931, 0933);
+insert into Schedule values(3, 1101, 0900, 1045, 1047);
+insert into Schedule values(3, 1031, 0900, 1040, 1042);
 
 insert into Price value (2.5, 1001, 1003);
 insert into Price value (3.5, 1001, 1031);
@@ -121,10 +123,32 @@ insert into Price value (4.5, 1301, 1002);
 insert into Price value (2.25, 1011, 1301);
 insert into Price value (3.5, 1101, 1003);
 
-select cost
-from Price, Station S1, Station S2
+
+
+select cost Cost, Sc2.intime - Sc1.outtime Time
+from Price, Station S1, Station S2, Schedule Sc1, Schedule Sc2
 where Price.fromsid = S1.sid
 	and Price.tosid = S2.sid
     and S1.name = 'Metro Square'
     and S2.name = 'Broadway'
+    and Sc1.stime = Sc2.stime
+    and Sc1.sid = S1.sid
+    and Sc2.sid = S2.sid
+    
 
+
+select name 'Station Names', count(distinct cid) Traffic
+from Station, Card
+where Station.sid = Card.insid
+or Station.sid = Card.outsid
+and Card.intime >= 0800
+and Card.intime <= 1000
+or Card.outtime >= 0800
+and Card.outtime <= 1000
+group by name
+
+
+select cid
+from Card
+where intime <= 2400-1000
+and outtime < intime
