@@ -47,9 +47,9 @@ create table Schedule (
 
 create table Price (
    cost numeric(4,2),
-   fromstat varchar(20),
-   tostat varchar(20),
-   primary key (cost, fromstat, tostat)
+   fromsid int(4),
+   tosid int(4),
+   primary key (cost, fromsid, tosid)
 );
 
 
@@ -104,4 +104,27 @@ insert into Card values (38741, 813.20, 1001, 1021, 1357, 0959);
 insert into Card values (29414, 84.19, 1301, 1001, 1638, 2147);
 insert into Card values (92345, 9.00, 1021, 1011, 0530, 1549);
 
-insert into Schedule values()
+insert into Schedule values(1, 1001, 0857, 0859);
+insert into Schedule values(1, 1003, 0837, 0840);
+insert into Schedule values(2, 1101, 1321, 1322);
+insert into Schedule values(2, 1001, 1141, 1145);
+insert into Schedule values(3, 1031, 0931, 0933);
+insert into Schedule values(3, 1101, 1045, 1047);
+insert into Schedule values(3, 1031, 1040, 1042);
+
+insert into Price value (2.5, 1001, 1003);
+insert into Price value (3.5, 1001, 1031);
+insert into Price value (4.5, 1001, 1002);
+insert into Price value (3, 1021, 1201);
+insert into Price value (2.5, 1001, 1003);
+insert into Price value (4.5, 1301, 1002);
+insert into Price value (2.25, 1011, 1301);
+insert into Price value (3.5, 1101, 1003);
+
+select cost
+from Price, Station S1, Station S2
+where Price.fromsid = S1.sid
+	and Price.tosid = S2.sid
+    and S1.name = 'Metro Square'
+    and S2.name = 'Broadway'
+
