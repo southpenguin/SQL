@@ -1,3 +1,47 @@
+CREATE TABLE Customer (
+	cid int(10),
+	cname varchar(40),
+	caddress varchar(40),
+	cphone varchar(10),
+	balance int(4),
+	primary key (cid));
+
+CREATE TABLE Movie (
+	mid int(10),
+	title varchar(40),
+	genre varchar(20),
+	year int(4),
+	primary key (mid));
+
+CREATE TABLE Branch (
+	bid int(10),
+	bname varchar(40),
+	baddress varchar(40),
+	primary key (bid));
+
+CREATE TABLE Copy (
+	copyi int(10),
+	mid int(10),
+	bid int(10),
+	primary key (copyid),
+	foreign key (mid) references movie(mid),
+	foreign key (bid) references branch(bid));
+
+
+CREATE TABLE Rental (
+	cid int(10),
+	copyid int(10),
+	outdate int(8),
+	returndate int(8),
+	cost int(4),
+	primary key (cid,copyid,outdate),
+	foreign key (cid) references customer(cid),
+	foreign key (copyid) references copy(copyid));
+
+
+
+
+
 select cname
 from Customer
 where 
