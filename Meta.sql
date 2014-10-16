@@ -1,45 +1,60 @@
-CREATE TABLE customer (
-   cid int(10),
-   cname varchar(40),
-   caddress  varchar(40),
-   cphone  varchar(10),
-   balance int(4),
-   primary key (cid));
+create table Station (
+   sid int(4),
+   name varchar(20),
+   primary key (sid)
+);
+
+create table Line (
+   lid int(2),
+   direction varchar(8),
+   primary key (lid, direction)
+);
+
+create table Stop (
+   sid int(4),
+   lid int(2),
+   primary key (sid, lid),
+   foreign key (sid) references Station(sid),
+   foreign key (lid) references Line(lid)
+);
+
+create table Train (
+   lid int(2),
+   stime int(4),
+   primary key (lid, stime),
+   foreign key (lid) references Line(lid)
+);
+
+create table Card (
+   cid int(5),
+   balance numeric(4,2),
+   insid int(4),
+   outsid int(4),
+   intime int(4),
+   outtime int(4),
+   primary key (cid),
+);
+
+create table Schedule (
+   lid int(2),
+   sid int(4),
+   intime int(4),
+   outtime int(4),
+   direction varchar(8),
+   primary key (lid, sid, intime, direction),
+   foreign key (lid) references Line(lid),
+   foreign key (sid) references Station(sid),
+   foreign key (direction) references Line(direction)
+);
+
+create table Price (
+   cost numeric(1,2),
+   fromstat varchar(20),
+   tostat varchar(20),
+   primary key (cost, fromstat, tostat)
+);
 
 
-CREATE TABLE movie (
-   mid    int(10),
-   title  varchar(40),
-   genre  varchar(20),
-   year   int(4),
-   primary key (mid));
-
-
-CREATE TABLE branch (
-   bid    int(10),
-   bname  varchar(40),
-   baddress  varchar(40),
-   primary key (bid));
-
-
-CREATE TABLE copy (
-  copyid int(10),
-  mid int(10),
-  bid int(10),
-  primary key (copyid),
-  foreign key (mid) references movie(mid),
-  foreign key (bid) references branch(bid));
-
-
-CREATE TABLE rented (
-  cid    int(10),
-  copyid  int(10),
-  outdate       int(8),
-  returndate    int(8),
-  cost       int(4),
-  primary key (cid,copyid,outdate),
-  foreign key (cid) references customer(cid),
-  foreign key (copyid) references copy(copyid));
 
 
 INSERT INTO customer VALUES (15674, 'John Smith', '67 Jay Street',7183457689,10);
