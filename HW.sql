@@ -173,9 +173,15 @@ where exists
 
 
 
-update Rental
-set returndate = 20141016, cost
-where
+update Rental, Customer
+set Rental.returndate = 20141016, 
+	Rental.cost = (2014 - Rental.outdate/10000)*365 + 
+	(10 - Rental.outdate%10000 / 100) * 30 + 
+	(16 - Rental.outdate%1000000) + 2,
+	Customer.balance = Customer.balance - cost
+where Rental.cid = 15647 and
+	Rental.copyid = 76235 and
+	Rental.outdate = 20141003
 
 
 
@@ -186,13 +192,25 @@ where
 
 
 create view analyst as 
-select title, bname
+select bname Branches, title Movies, sum(cost) 'Total Income', count(outdate) 'Rental'
 from Movie, Branch, Rental, Copy
 where Movie.mid = Copy.mid
 	and Copy.copyid = Rental.copyid
 	and Copy.bid = Branch.bid
+    and Rental.outdate >= 20090000
+    and Rental.outdate <= 20099999
+group by bname, title
 
 
+select Rentals
+from analyst
+where Branches = 'Brooklyn Heights'
+	and Movies = 'Terminator2' 
+
+select Branches
+from analyst
+order by 'Total Income' desc
+limit 1
 
 
 create view Customers as
