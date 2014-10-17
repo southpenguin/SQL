@@ -230,7 +230,6 @@ value (18123, 'Bob Jones', '23 Court Street, Brooklyn')
 
 
 
-
 Stations(sid, name)
 Stop(sid, lid)
 Lin(lid, direction, number)
