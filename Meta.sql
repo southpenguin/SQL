@@ -10,6 +10,7 @@ create table Line (
    primary key (lid, direction)
 );
 
+
 create table Stop (
    sid int(4),
    lid int(2),
