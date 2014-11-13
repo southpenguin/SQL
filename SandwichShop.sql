@@ -1,5 +1,5 @@
 create table customer (
-  new char(10) primary key,
+  phone char(10) primary key,
   building_num int,
   street varchar(20),
   apartment varchar(20)
