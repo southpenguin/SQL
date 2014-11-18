@@ -22,3 +22,12 @@ FOR EACH ROW
 BEGIN
   INSERT INTO OldAddresses VALUES(OLD.cid, OLD.caddress);
 END
+
+
+
+SELECT COUNT(*) from information_schema.tables 
+WHERE table_type = 'base table' 
+
+SELECT TABLE_NAME, COUNT(*) 
+FROM INFORMATION_SCHEMA.COLUMNS 
+GROUP BY TABLE_NAME
