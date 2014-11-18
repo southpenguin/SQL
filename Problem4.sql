@@ -8,4 +8,9 @@ WHERE branch.bid = copy.bid
 GROUP BY BranchID;
 
 
-CREATE VIEW 
+CREATE VIEW CustView AS
+SELECT cid CustomerID, cname Name
+FROM customer
+
+
+INSERT CustView VALUES(55555, 'Jason Smith');
