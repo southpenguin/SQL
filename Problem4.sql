@@ -14,3 +14,11 @@ FROM customer
 
 
 INSERT CustView VALUES(55555, 'Jason Smith');
+
+
+CREATE TRIGGER update_oldaddress
+BEFORE UPDATE ON customer
+FOR EACH ROW
+BEGIN
+  INSERT INTO OldAddresses VALUES(OLD.cid, OLD.caddress);
+END
