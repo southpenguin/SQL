@@ -59,3 +59,11 @@ WHERE table_schema = 'HW2'
        22222
     )
 )
+
+
+select branch.bid, movie.mid, sum(returndate-outdate)
+from movie, branch, copy, rental
+where movie.mid = copy.mid
+  AND copy.bid = branch.bid
+  AND copy.copyid = rental.copyid
+GROUP BY (branch.bid, movie.bid)
