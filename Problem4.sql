@@ -50,3 +50,12 @@ SELECT table_name, column_name
 FROM INFORMATION_SCHEMA.COLUMNS 
 WHERE table_schema = 'HW2'
   AND column_name LIKE '%name%'
+  
+  
+  INSERT INTO customer(cid) VALUE(
+    IF(
+       ((SELECT COUNT(*) FROM copy)>5),
+       11111,
+       22222
+    )
+)
